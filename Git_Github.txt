@@ -1,6 +1,9 @@
 ﻿Q1. Create and Initialize Git Repository
-
-
+Create a new repository named git_lab on your local system.
+Initialize it using Git.
+Create a file info.txt and add your name and date.
+Check the repository status.
+Add the file to staging and commit with message "Initial commit" .
 
 
 Step 1 — Check Git Installation
@@ -13,17 +16,9 @@ sudo apt update
 sudo apt install git -y
 
 
-
-
 git config --global user.name "Utkarsh Kumar"
 git config --global user.email "your_email@example.com"
 
-
-Create a new repository named git_lab on your local system.
-Initialize it using Git.
-Create a file info.txt and add your name and date.
-Check the repository status.
-Add the file to staging and commit with message "Initial commit" .
 
 
 mkdir git_lab
@@ -53,14 +48,11 @@ git push -u origin master
 
 
 
-
 Q3. Clone Repository and Make Changes
 Clone the repository git_lab_remote to a new directory.
 Create a new file data.txt and add some sample content.
 Add and commit the file with message "Added data file" .
 Push the changes back to GitHub.
-
-
 
 
 cd ~
@@ -85,7 +77,6 @@ Commit the changes.
 Switch back to main branch.
 Merge the feature branch into main .
 Delete the feature branch after merge.
-
 
 
 
