@@ -6,8 +6,6 @@ sudo systemctl start docker
 sudo systemctl enable docker
 
 
-
-
 1. Install Docker
 Install Docker on Ubuntu/Linux system.
 Verify Docker installation.
@@ -17,9 +15,6 @@ sudo apt update
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
-
-
-
 
 
 
@@ -39,15 +34,6 @@ sudo docker run -it ubuntu bash
 mkdir cdac
 ls
 exit 
-
-
-
-
-
-
-
-
-
 
 
 
@@ -98,27 +84,6 @@ sudo docker run hellojava
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 4. Docker Compose
 Create:
 One Java container
@@ -144,7 +109,6 @@ public class HelloMySQL {
         Thread.sleep(5000); // keep container alive for 5 seconds
     }
 }
-
 
 
 
@@ -208,9 +172,6 @@ sudo docker compose down   # stop everything
 
 
 
-
-
-
 5. Docker Networking
 Create a custom Docker network.
 Run two containers on the same network.
@@ -246,10 +207,6 @@ sudo docker network inspect cdac-network
 
 # Cleanup
 sudo docker network rm cdac-network
-
-
-
-
 
 
 
@@ -296,13 +253,6 @@ exit
 # Cleanup
 sudo docker rm container2
 sudo docker volume rm cdac-volume
-
-
-
-
-
-
-
 
 
 
