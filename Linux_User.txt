@@ -1,2 +1,2 @@
-sudo userdel -f user2
-sudo usermod -aG sudo <new_username>
+sudo adduser user2
+sudo usermod -aG sudo user2
