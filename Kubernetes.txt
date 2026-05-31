@@ -1,0 +1,152 @@
+﻿8. Install Kubernetes using Minikube
+Install:
+Minikube
+kubectl
+Start Minikube cluster.
+Verify cluster status.
+
+
+
+
+# Install kubectl
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+kubectl version --client
+
+
+# Install Minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+minikube version
+
+
+# Fix Docker permission & Start Minikube
+sudo usermod -aG docker $USER
+sudo chmod 666 /var/run/docker.sock
+minikube start --driver=docker
+
+
+# Verify cluster
+minikube status
+kubectl get nodes
+kubectl cluster-info
+kubectl get pods -A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. Kubernetes Pod and Deployment
+Create nginx pod using built-in image.
+Create nginx deployment using command line.
+Scale deployment replicas.
+
+
+
+
+# Prerequisites
+sudo chmod 666 /var/run/docker.sock
+minikube start --driver=docker
+
+
+# Part A — Create Pod
+kubectl run nginx-pod --image=nginx --restart=Never --port=80
+kubectl get pods
+kubectl describe pod nginx-pod
+kubectl logs nginx-pod
+
+
+# Part B — Create Deployment
+kubectl create deployment nginx-deployment --image=nginx --replicas=2
+kubectl get deployments
+kubectl get pods
+kubectl describe deployment nginx-deployment
+
+
+# Part C — Scale
+kubectl scale deployment nginx-deployment --replicas=4
+kubectl get pods
+kubectl scale deployment nginx-deployment --replicas=1
+kubectl get pods
+
+
+# Cleanup
+kubectl delete pod nginx-pod
+kubectl delete deployment nginx-deployment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10. Kubernetes Service
+Expose nginx deployment as NodePort service.
+Access application in browser.
+
+
+
+
+# Prerequisites
+sudo chmod 666 /var/run/docker.sock
+minikube start --driver=docker
+kubectl create deployment nginx-deployment --image=nginx --replicas=2
+
+
+# Expose as NodePort
+kubectl expose deployment nginx-deployment --type=NodePort --port=80
+
+
+# Verify
+kubectl get services
+kubectl describe service nginx-deployment
+
+
+# Access in browser (docker driver method)
+minikube service nginx-deployment --url
+# Open the URL shown in your browser ✅
+
+
+# OR via port-forward
+kubectl port-forward service/nginx-deployment 8080:80
+# Open http://localhost:8080 in browser ✅
+
+
+# Cleanup
+kubectl delete service nginx-deployment
+kubectl delete deployment nginx-deployment
